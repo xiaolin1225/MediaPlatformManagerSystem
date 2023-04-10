@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright © 2023 - 现在. LMY. All Rights Reserved.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaolin.mpms.mapper.ChatMessageMapper">
+
+    <resultMap id="userMap" type="user">
+
+    </resultMap>
+
+    <resultMap id="baseMap" type="chatMessage">
+        <id column="id" property="id"/>
+        <result column="from" property="from"/>
+        <result column="to" property="to"/>
+        <result column="content" property="content"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="version" property="version"/>
+        <association property="fromUser" javaType="user">
+            <id column="fuid" property="id"/>
+            <result column="fuuid" property="uid"/>
+            <result column="fuusername" property="username"/>
+            <result column="fupassword" property="password"/>
+            <result column="fuinitial_password" property="initialPassword"/>
+            <result column="funickname" property="nickname"/>
+            <result column="fuavatar" property="avatar"/>
+            <result column="fuemail" property="email"/>
+            <result column="fuphone" property="phone"/>
+            <result column="fustatus" property="status"/>
+            <result column="fuis_enable" property="isEnable"/>
+            <result column="fuis_deleted" property="isDeleted"/>
+            <result column="fucreate_time" property="createTime"/>
+            <result column="fuupdate_time" property="updateTime"/>
+            <result column="fuversion" property="version"/>
+        </association>
+        <association property="toUser" javaType="user">
+            <id column="tuid" property="id"/>
+            <result column="tuuid" property="uid"/>
+            <result column="tuusername" property="username"/>
+            <result column="tupassword" property="password"/>
+            <result column="tuinitial_password" property="initialPassword"/>
+            <result column="tunickname" property="nickname"/>
+            <result column="tuavatar" property="avatar"/>
+            <result column="tuemail" property="email"/>
+            <result column="tuphone" property="phone"/>
+            <result column="tustatus" property="status"/>
+            <result column="tuis_enable" property="isEnable"/>
+            <result column="tuis_deleted" property="isDeleted"/>
+            <result column="tucreate_time" property="createTime"/>
+            <result column="tuupdate_time" property="updateTime"/>
+            <result column="tuversion" property="version"/>
+        </association>
+    </resultMap>
+
+    <select id="getMessageList" resultMap="baseMap">
+        SELECT cm.id,cm.`from`,cm.`to`,cm.content,cm.create_time,cm.update_time,cm.version,
+        <if test="column!=null and column.size()>0">
+            <foreach collection="column" separator="," item="item">
+                fu.${item} as fu${item},tu.${item} as tu${item}
+            </foreach>
+        </if>
+        FROM xl_chat_message cm
+        JOIN xl_user fu ON cm.`from` = fu.uid
+        JOIN xl_user tu ON cm.`to` = tu.uid
+        WHERE (`from` = #{uid} AND `to` = #{contactUid})
+        OR
+        (`from` = #{contactUid} AND `to` = #{uid});
+    </select>
+</mapper>

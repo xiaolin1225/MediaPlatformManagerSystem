@@ -1,0 +1,80 @@
+#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+#spring.datasource.url=jdbc:mysql://localhost:3306/mpms?serverTimeZone
+#spring.datasource.username=root
+#spring.datasource.password=Lmy1221@my
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mpms?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2b8
+    username: root
+    password: Lmy1221@my
+  servlet:
+    multipart:
+      max-file-size: 300MB
+      max-request-size: 3000MB
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+  redis:
+    # 地址
+    host: localhost
+    # 端口，默认为6379
+    port: 6379
+    # 数据库索引
+    database: 0
+    # 密码
+    password:
+    # 连接超时时间
+    timeout: 10s
+    lettuce:
+      pool:
+        # 连接池中的最小空闲连接
+        min-idle: 0
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池的最大数据库连接数
+        max-active: 8
+        # #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1ms
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+server:
+  port: 80
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+mybatis-plus:
+  type-aliases-package: com.xiaolin.mpms.entity
+  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      table-prefix: xl_
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+knife4j:
+  enable: true
+  setting:
+    enableFooter: false
+    enableFooterCustom: true
+    footerCustomContent: Apache License 2.0 | Copyright  2023 - 现在. [小林](https://www.lggxz.top)
+files:
+  upload:
+    path: D:\新建文件夹\mpms\upload
+jwt:
+  # 存放token的请求头属性
+  tokenHeader: Authorization
+  # JWT加密使用的密匙
+  secret: 8CDF2BC368B104E12C9CDD7A9C99F3DC95D390AB6884FBD13DB43ECB43B70C72
+  # JWT的过期时间（60*60*1000）
+  expiration: 360000000
+  # JWT负载的头
+  tokenHead: Bearer
+code:
+  timeout: 600
+

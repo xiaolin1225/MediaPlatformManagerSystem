@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright © 2023 - 现在. LMY. All Rights Reserved.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 用户表mapper -->
+<mapper namespace="com.xiaolin.mpms.mapper.UserMapper">
+    <select id="getUserList" resultType="User">
+        select * from xl_user where is_deleted != 1
+        <if test="status != null and status != ''">
+            and status = #{status}
+        </if>
+        <if test="keyword != null and keyword != ''">
+            and (username like #{keyword} or nickname like #{keyword})
+        </if>
+        limit #{start},#{size}
+    </select>
+    <select id="getUserTotalNum" resultType="java.lang.Integer">
+        select count(id)
+        from xl_user
+        where is_deleted != 1
+    </select>
+    <select id="getUserTotalNumWithFilter" resultType="java.lang.Integer">
+        select count(id)
+        from xl_user
+        where is_deleted != 1
+        <if test="status != null and status != ''">
+            and status = #{status}
+        </if>
+        <if test="keyword != null and keyword != ''">
+            and (username like #{keyword} or nickname like #{keyword})
+        </if>
+    </select>
+    <select id="getUserRoles" resultType="java.lang.String">
+        SELECT DISTINCT m.permission
+        FROM xl_user_role ur
+                 JOIN xl_role r ON r.id = ur.rid
+                 JOIN xl_role_menu rm ON ur.rid = rm.rid
+                 JOIN xl_menu m ON m.id = rm.mid
+        WHERE uid = #{uid}
+          AND r.`status` = 1
+          AND r.is_deleted = 0
+          AND m.`status` = 1
+          AND m.is_deleted = 0
+    </select>
+    <select id="getUserInfoByUid" resultType="com.xiaolin.mpms.entity.User">
+        select * from xl_user where uid = #{uid} AND is_deleted != 1
+    </select>
+</mapper>

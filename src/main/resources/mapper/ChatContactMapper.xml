@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright © 2023 - 现在. LMY. All Rights Reserved.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaolin.mpms.mapper.ChatContactMapper">
+
+    <select id="selectListByUid" resultType="User">
+        SELECT
+        <foreach collection="column" item="item" separator=",">
+            u.${item}
+        </foreach>
+        FROM xl_user u
+        JOIN xl_chat_contact cc on u.uid = cc.contact_uid
+        WHERE cc.uid = #{uid}
+        AND u.status = 1
+        AND u.is_deleted = 0
+        AND cc.status = 1
+        AND cc.is_deleted = 0
+    </select>
+</mapper>
