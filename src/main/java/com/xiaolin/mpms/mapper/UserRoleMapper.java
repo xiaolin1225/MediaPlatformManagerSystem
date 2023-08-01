@@ -1,11 +1,10 @@
-/*
- * Copyright © 2023 - 现在. LMY. All Rights Reserved.
- */
-
 package com.xiaolin.mpms.mapper;
 
+import com.xiaolin.mpms.entity.user.UserRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xiaolin.mpms.entity.UserRole;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,8 +12,12 @@ import com.xiaolin.mpms.entity.UserRole;
  * </p>
  *
  * @author xiaolin
- * @since 2023-03-28
+ * @since 2023-04-11
  */
 public interface UserRoleMapper extends BaseMapper<UserRole> {
 
+    Integer deleteRoleIdByUid(@Param("uid") Integer uid);
+    Integer insertRoleId(@Param("uid") Integer uid,@Param("roleIds") List<Integer> roleIds);
+    Integer deleteMenuIdByRid(@Param("rid") Integer roleId);
+    Integer insertMenuId(@Param("rid") Integer roleId,@Param("menuIds") List<Integer> menuIds);
 }

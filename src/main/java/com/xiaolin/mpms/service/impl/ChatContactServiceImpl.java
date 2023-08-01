@@ -4,9 +4,9 @@
 
 package com.xiaolin.mpms.service.impl;
 
-import com.xiaolin.mpms.entity.AuthUser;
-import com.xiaolin.mpms.entity.ChatContact;
-import com.xiaolin.mpms.entity.User;
+import com.xiaolin.mpms.entity.user.AuthUser;
+import com.xiaolin.mpms.entity.chat.ChatContact;
+import com.xiaolin.mpms.entity.user.User;
 import com.xiaolin.mpms.mapper.ChatContactMapper;
 import com.xiaolin.mpms.service.ChatContactService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

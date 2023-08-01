@@ -6,8 +6,8 @@ package com.xiaolin.mpms.controller;
 
 import com.google.code.kaptcha.Producer;
 import com.xiaolin.mpms.service.UserService;
-import com.xiaolin.mpms.entity.LoginDto;
-import com.xiaolin.mpms.entity.ResultVO;
+import com.xiaolin.mpms.entity.VO.LoginVO;
+import com.xiaolin.mpms.entity.VO.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -68,7 +68,7 @@ public class RegisterController {
      * @return 验证码是否正确
      */
     @PostMapping("code/validation")
-    public ResultVO<Boolean> isCodeCorrect(@RequestBody LoginDto user, HttpSession session) {
+    public ResultVO<Boolean> isCodeCorrect(@RequestBody LoginVO user, HttpSession session) {
         if (Objects.isNull(user))
             return ResultVO.success("数据获取成功", false);
         String code = (String) session.getAttribute("register_code");

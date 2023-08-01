@@ -6,7 +6,8 @@ package com.xiaolin.mpms.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaolin.mpms.entity.User;
+import com.xiaolin.mpms.entity.user.User;
+import com.xiaolin.mpms.entity.VO.UserVO;
 
 import java.util.List;
 import java.util.Map;
@@ -28,38 +29,35 @@ public interface UserService extends IService<User> {
      * @param filter 过滤条件
      * @return 用户列表
      */
-    Page<User> getUserList(int current, int size, Map<String, String> filter);
+    Page<User> getUserListPage(int current, int size, Map<String, String> filter);
 
     /**
-     * 获取用户信息
+     * 获取带角色用户信息
      *
      * @return 用户信息
      */
-    User getUserInfo(Integer id);
+    UserVO getUserInfo(Integer id);
+
+    /**
+     * 获取带权用户信息
+     * @return 带权用户信息
+     */
+
+    UserVO getUserInfoWithPermission();
 
     User getUserInfo(Integer id, List<String> column);
-
-    User getUserInfo();
 
     User getUserInfoByUid(String uid);
 
     User getUserInfoByUid(String uid,List<String> column);
 
-    /**
-     * 添加用户
-     *
-     * @param user 用户信息
-     * @return 用户是否添加成功
-     */
-    Boolean addUser(User user);
 
     /**
-     * 更新用户信息
-     *
+     * 保存用户信息
      * @param user 用户信息
-     * @return 用户是否更新成功
+     * @return 是否保存成功
      */
-    Boolean updateUser(User user);
+    Boolean saveUser(UserVO user);
 
     /**
      * 删除用户
@@ -88,4 +86,14 @@ public interface UserService extends IService<User> {
     String login(String username, String password, String code, String codeKey);
 
     Boolean logout();
+
+    Boolean resetPassword(int id, String initialPassword);
+
+    Boolean updateProfile(UserVO user);
+
+    Boolean updateUserPassword(Map<String, String> data);
+
+    Boolean updateAvatar(UserVO user);
+
+    List<User> getUserListSelect();
 }

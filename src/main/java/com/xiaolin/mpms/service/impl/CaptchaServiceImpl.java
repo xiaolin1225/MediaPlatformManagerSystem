@@ -5,7 +5,7 @@
 package com.xiaolin.mpms.service.impl;
 
 import com.google.code.kaptcha.Producer;
-import com.xiaolin.mpms.entity.Captcha;
+import com.xiaolin.mpms.entity.system.Captcha;
 import com.xiaolin.mpms.service.CaptchaService;
 import com.xiaolin.mpms.utils.RedisCache;
 import com.xiaolin.mpms.utils.UUIDUtil;

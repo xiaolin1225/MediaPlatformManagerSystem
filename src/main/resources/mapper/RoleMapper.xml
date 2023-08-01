@@ -6,4 +6,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiaolin.mpms.mapper.RoleMapper">
 
+    <resultMap id="baseMap" type="Role">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="key" property="key"/>
+        <result column="order" property="order"/>
+        <result column="status" property="status"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="version" property="version"/>
+        <association property="menuIds" column="id" javaType="java.util.List" select="getMenuIdByRoleId"/>
+    </resultMap>
+
+    <select id="getRolesByUid" resultType="Role">
+        SELECT r.*
+        FROM xl_role r
+                 JOIN xl_user_role ur on r.id = ur.rid
+        WHERE uid = #{uid}
+        ORDER BY r.`order` DESC
+    </select>
+    <select id="getRoleInfoById" resultMap="baseMap">
+        SELECT *
+        FROM xl_role
+        WHERE id = #{id}
+    </select>
+    <select id="getMenuIdByRoleId" resultType="java.lang.Integer">
+        SELECT mid
+        FROM xl_role_menu
+        WHERE rid = #{id}
+    </select>
 </mapper>

@@ -4,8 +4,16 @@
 
 package com.xiaolin.mpms.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xiaolin.mpms.entity.Content;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xiaolin.mpms.entity.content.Content;
+import com.xiaolin.mpms.entity.content.ContentCheck;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -16,5 +24,4 @@ import com.xiaolin.mpms.entity.Content;
  * @since 2023-03-18
  */
 public interface ContentMapper extends BaseMapper<Content> {
-
 }

@@ -4,13 +4,11 @@
 
 package com.xiaolin.mpms.mapper;
 
-import com.xiaolin.mpms.entity.ChatContact;
+import com.xiaolin.mpms.entity.chat.ChatContact;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xiaolin.mpms.entity.User;
+import com.xiaolin.mpms.entity.user.User;
 import org.apache.ibatis.annotations.Param;
 
-import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 
 /**

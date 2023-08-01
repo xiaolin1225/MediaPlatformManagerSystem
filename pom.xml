@@ -23,6 +23,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!-- Spring Boot Aop-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <!-- Spring Boot 授权-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -189,6 +194,12 @@
         <!--            <artifactId>hutool-all</artifactId>-->
         <!--            <version>5.8.12</version>-->
         <!--        </dependency>-->
+
+        <!-- XML解析-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
 
         <!-- 缩略图-->
         <dependency>

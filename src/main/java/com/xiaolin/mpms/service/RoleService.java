@@ -4,8 +4,12 @@
 
 package com.xiaolin.mpms.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaolin.mpms.entity.Role;
+import com.xiaolin.mpms.entity.user.Role;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -17,4 +21,11 @@ import com.xiaolin.mpms.entity.Role;
  */
 public interface RoleService extends IService<Role> {
 
+    List<Role> getList();
+
+    Page<Role> getListPage(int current, int size, Map<String, String> filter);
+
+    Role getRoleInfoById(Integer id);
+
+    Boolean saveRoleInfo(Role role);
 }

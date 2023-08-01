@@ -4,9 +4,10 @@
 
 package com.xiaolin.mpms.controller;
 
-import com.xiaolin.mpms.entity.Captcha;
-import com.xiaolin.mpms.entity.ResultVO;
+import com.xiaolin.mpms.entity.system.Captcha;
+import com.xiaolin.mpms.entity.VO.ResultVO;
 import com.xiaolin.mpms.service.CaptchaService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("captcha")
+@Api(tags = "验证码")
 public class CaptchaController {
 
     @Autowired
@@ -22,7 +24,6 @@ public class CaptchaController {
 
     @GetMapping()
     public ResultVO<Captcha> captcha(@RequestParam(required = false) String codeKey, String type) {
-        System.out.println(codeKey);
         return ResultVO.success("数据获取成功", captchaService.generateCaptcha(codeKey, type));
     }
 

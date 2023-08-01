@@ -29,7 +29,8 @@ public class JsonRedisSerializer<T> implements RedisSerializer<T> {
         if (t == null) {
             return new byte[0];
         }
-        return JSON.toJSONString(t, JSONWriter.Feature.WriteClassName).getBytes(DEFAULT_CHARSET);
+//        return JSON.toJSONString(t, JSONWriter.Feature.WriteClassName).getBytes(DEFAULT_CHARSET);
+        return JSON.toJSONString(t, JSONWriter.Feature.WriteClassName,JSONWriter.Feature.FieldBased).getBytes(DEFAULT_CHARSET);
     }
 
     @Override
@@ -39,6 +40,7 @@ public class JsonRedisSerializer<T> implements RedisSerializer<T> {
         }
         String str = new String(bytes, DEFAULT_CHARSET);
 
-        return JSON.parseObject(str, clazz, JSONReader.Feature.SupportAutoType);
+//        return JSON.parseObject(str, clazz, JSONReader.Feature.SupportAutoType);
+        return JSON.parseObject(str, clazz, JSONReader.Feature.SupportAutoType,JSONReader.Feature.FieldBased);
     }
 }

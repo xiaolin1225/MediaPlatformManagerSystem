@@ -65,7 +65,7 @@ knife4j:
     footerCustomContent: Apache License 2.0 | Copyright  2023 - 现在. [小林](https://www.lggxz.top)
 files:
   upload:
-    path: D:\新建文件夹\mpms\upload
+    path: D:/新建文件夹/mpms/upload/
 jwt:
   # 存放token的请求头属性
   tokenHeader: Authorization
@@ -77,4 +77,9 @@ jwt:
   tokenHead: Bearer
 code:
   timeout: 600
-
+encrypt:
+  publicKey: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDde67SxKBtFGsVrahNzWa7PllWRmL/ANJc+/8aF42gxMC3fGXdsxCZ8D7+p6ikSVcjnBosfsk9wPk0XocPmFKtSKyPm6e6KyqyCH9hBLBwZl/KCwuoHfimIEkTmKxOeirF1EVvjUW9P7csgOvsiAiFyp0pFFji/8dB/todY9gwQIDAQAB
+  privateKey: MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAMN17rtLEoG0UaxWtqE3NZrs+WVZGYv8A0lz7/xoXjaDEwLd8Zd2zEJnwPv6nqKRJVyOcGix+yT3A+TRehw+YUq1IrI+bp7orKrIIf2EEsHBmX8oLC6gd+KYgSROYrE56KsXURW+NRb0/tyyA6+yICIXKnSkUWOL/x0H+2h1j2DBAgMBAAECgYB44nMneqKTfUYV4/tHcbHBg1YrDBP0s4QE5aNC4/mAlUgoucM0/dAOMcT1EmcR+9qzh5SV6517mxnZZoSy+xGH4UTxK0q0iZGQ+mT+oBRYwmmagGLwr88gPjW2BdGC3addlc7iFYjp3RIgxmES5GK52lT2OiatpawiEj4s2u/bkQJBAPGIttUKgvlI6O5QHLsSmFJE9bMcksGIX7B0jwVuPXUCDzpWXcz3v4VCGNaaKrt32FxBWTTgXa8W/Z6SDW2a5FsCQQDPKs4co8z7wXh1j1OHBICAnwJonzpVoIKyJhKyyedBkIOTvHGHakPEwDB2uTggYh2jRV4jSkTrbBp4ZDuSBKoTAkBcl/CfU1xKfKzvTz70aHiEcXNPqtCH6OPmHYkGp/Bfft6fmqRzAzckuuYSvx9KpvMGyvaL0seXa9TmiU8kiZCpAkANt0TMKqAgru99wQ6Dqu2jFmP/b0NadfURPGoSgkGYWqwLdPeDQqrX9O2AfsTTiAt0Stxvs7Qabh7Wh7RV948XAkEA7gq5j4L07NOQ5ihbrvYVFfIoaxO38pSUGnkROootFSnfsRk7srLi7fYBWmWLkeYEeoNL3Kxr8jmM+1xlTFPXHA==
+platform:
+  wx:
+    api: https://api.weixin.qq.com

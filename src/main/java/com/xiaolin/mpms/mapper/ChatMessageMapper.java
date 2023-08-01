@@ -4,7 +4,7 @@
 
 package com.xiaolin.mpms.mapper;
 
-import com.xiaolin.mpms.entity.ChatMessage;
+import com.xiaolin.mpms.entity.chat.ChatMessage;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 

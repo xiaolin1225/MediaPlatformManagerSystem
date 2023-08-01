@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
+@EnableSwagger2WebMvc
 public class ApiDocConfig {
     @Bean(value = "dockerBean")
     public Docket dockerBean() {

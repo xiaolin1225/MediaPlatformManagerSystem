@@ -1,7 +1,7 @@
 package com.xiaolin.mpms.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaolin.mpms.entity.FileMeta;
+import com.xiaolin.mpms.entity.media.MediaMeta;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.xiaolin.mpms.entity.FileMeta;
  * @author xiaolin
  * @since 2023-02-28
  */
-public interface FileMetaService extends IService<FileMeta> {
+public interface FileMetaService extends IService<MediaMeta> {
 
 }

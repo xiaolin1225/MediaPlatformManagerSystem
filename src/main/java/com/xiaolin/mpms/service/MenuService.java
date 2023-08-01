@@ -5,7 +5,7 @@
 package com.xiaolin.mpms.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaolin.mpms.entity.Menu;
+import com.xiaolin.mpms.entity.system.Menu;
 
 import java.util.List;
 
@@ -22,8 +22,11 @@ public interface MenuService extends IService<Menu> {
     /**
      * 获取菜单树形数组
      *
-     * @param id 父级ID
+     * @param pid    父级ID
+     * @param column
      * @return 菜单树形数组
      */
-    List<Menu> getTreeList(Integer id, Integer pid);
+    List<Menu> getRouterList(Integer pid);
+
+    List<Menu> getRoleEditList();
 }

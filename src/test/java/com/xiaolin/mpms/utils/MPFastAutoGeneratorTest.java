@@ -14,8 +14,7 @@ public class MPFastAutoGeneratorTest {
     @Test
     public void generator() {
         List<String> includes = new ArrayList<>();
-        includes.add("xl_chat_contact");
-        includes.add("xl_chat_message");
+        includes.add("xl_content_post_result");
         List<String> prefix = new ArrayList<>();
         prefix.add("xl_");
         MPFastAutoGenerator.generator("jdbc:mysql://localhost:3306/mpms?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2b8",

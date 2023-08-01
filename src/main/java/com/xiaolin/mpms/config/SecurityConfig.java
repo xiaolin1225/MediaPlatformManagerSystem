@@ -60,7 +60,7 @@ public class SecurityConfig {
                 // 允许登录接口匿名访问
                 .antMatchers().anonymous()
                 // 允许接口无需鉴权访问
-                .antMatchers("/file/**","/login","/register","/captcha","/captcha/validation","/user/exist").permitAll()
+                .antMatchers("/login", "/register", "/captcha", "/captcha/validation", "/user/exist", "/wx/**", "/upload/**", "/utils/**", "/doc.html/**", "/swagger-ui/**", "/swagger-resources/**", "/webjars/**", "/v2/**").permitAll()
                 // 其他接口请求均需鉴权认证
                 .anyRequest().authenticated()
                 .and()

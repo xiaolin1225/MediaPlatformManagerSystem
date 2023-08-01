@@ -6,6 +6,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 用户表mapper -->
 <mapper namespace="com.xiaolin.mpms.mapper.UserMapper">
+    <insert id="insertBatchRoleByUid">
+        INSERT INTO xl_user_role(uid, rid)
+        VALUES
+        <foreach collection="ids" item="item" separator=",">
+            (#{uid},#{item})
+        </foreach>
+    </insert>
+    <delete id="deleteBatchRoleByUid">
+        DELETE FROM xl_user_role WHERE uid = #{uid}
+        AND rid IN (
+        <foreach collection="ids" separator="," item="item">
+            #{item}
+        </foreach>
+        )
+    </delete>
     <select id="getUserList" resultType="User">
         select * from xl_user where is_deleted != 1
         <if test="status != null and status != ''">
@@ -32,19 +47,51 @@
             and (username like #{keyword} or nickname like #{keyword})
         </if>
     </select>
-    <select id="getUserRoles" resultType="java.lang.String">
-        SELECT DISTINCT m.permission
-        FROM xl_user_role ur
-                 JOIN xl_role r ON r.id = ur.rid
-                 JOIN xl_role_menu rm ON ur.rid = rm.rid
-                 JOIN xl_menu m ON m.id = rm.mid
+    <select id="getRolesByUid" resultType="com.xiaolin.mpms.entity.user.Role">
+        SELECT r.*
+        FROM xl_role r
+                 JOIN xl_user_role ur on r.id = ur.rid
         WHERE uid = #{uid}
+          AND r.`status` = 1
+          AND r.is_deleted = 0
+        ORDER BY r.`order` DESC;
+    </select>
+    <select id="getUserPermissions" resultType="java.lang.String">
+        SELECT DISTINCT m.permission
+        FROM xl_menu m
+                 JOIN xl_role_menu rm ON m.id = rm.mid
+                 JOIN xl_role r ON rm.rid = r.id
+                 JOIN xl_user_role ur ON r.id = ur.rid
+        WHERE ur.uid = #{uid}
           AND r.`status` = 1
           AND r.is_deleted = 0
           AND m.`status` = 1
           AND m.is_deleted = 0
     </select>
-    <select id="getUserInfoByUid" resultType="com.xiaolin.mpms.entity.User">
-        select * from xl_user where uid = #{uid} AND is_deleted != 1
+    <select id="getUserInfoByUid" resultType="com.xiaolin.mpms.entity.user.User">
+        select id,
+               uid,
+               username,
+               nickname,
+               avatar,
+               email,
+               phone,
+               did,
+               pid,
+               `order`,
+               `status`,
+               is_enable,
+               is_deleted,
+               create_time,
+               update_time,
+               version
+        from xl_user
+        where uid = #{uid}
+          AND is_deleted != 1
+    </select>
+    <select id="getRolesIdByUid" resultType="java.lang.Integer">
+        SELECT rid
+        FROM xl_user_role
+        WHERE uid = #{uid}
     </select>
 </mapper>

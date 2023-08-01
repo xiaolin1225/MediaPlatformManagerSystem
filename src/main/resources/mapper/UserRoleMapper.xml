@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Copyright © 2023 - 现在. LMY. All Rights Reserved.
-  -->
-
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiaolin.mpms.mapper.UserRoleMapper">
 
+    <insert id="insertMenuId">
+        INSERT INTO xl_role_menu(rid, mid) VALUES
+        <foreach collection="menuIds" item="item" separator=",">
+            (#{rid},#{item})
+        </foreach>
+    </insert>
+    <insert id="insertRoleId">
+        INSERT INTO xl_user_role(uid, rid) VALUES
+        <foreach collection="roleIds" item="item" separator=",">
+            (#{uid},#{item})
+        </foreach>
+    </insert>
+    <delete id="deleteMenuIdByRid">
+        DELETE
+        FROM xl_role_menu
+        WHERE rid = #{rid}
+    </delete>
+    <delete id="deleteRoleIdByUid">
+        DELETE
+        FROM xl_user_role
+        WHERE uid = #{uid}
+    </delete>
 </mapper>

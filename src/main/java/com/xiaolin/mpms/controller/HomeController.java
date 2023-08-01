@@ -4,7 +4,7 @@
 
 package com.xiaolin.mpms.controller;
 
-import com.xiaolin.mpms.entity.ResultVO;
+import com.xiaolin.mpms.entity.VO.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

@@ -5,7 +5,8 @@
 package com.xiaolin.mpms.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xiaolin.mpms.entity.Role;
+import com.xiaolin.mpms.entity.user.Role;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -17,4 +18,5 @@ import com.xiaolin.mpms.entity.Role;
  */
 public interface RoleMapper extends BaseMapper<Role> {
 
+    Role getRoleInfoById(@Param("id") Integer id);
 }

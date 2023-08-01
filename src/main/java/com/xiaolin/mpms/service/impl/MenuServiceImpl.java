@@ -8,10 +8,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiaolin.mpms.mapper.MenuMapper;
 import com.xiaolin.mpms.service.MenuService;
-import com.xiaolin.mpms.entity.Menu;
+import com.xiaolin.mpms.entity.system.Menu;
+import com.xiaolin.mpms.utils.MenuTreeList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -33,26 +35,42 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     /**
      * 获取菜单树形数组
      *
-     * @param id 父级ID
+     * @param pid    父级ID
      * @return 菜单树形数组
      */
     @Override
-    public List<Menu> getTreeList(Integer id, Integer pid) {
+    public List<Menu> getRouterList(Integer pid) {
+        return getMenuList(pid,null);
+//        return menus;
+    }
+
+    @Override
+    public List<Menu> getRoleEditList(){
+        return getMenuList(null, Arrays.asList("id","pid","title","`order`"));
+    }
+
+    private List<Menu> getMenuList(Integer pid, List<String> column){
         QueryWrapper<Menu> menuQueryWrapper = new QueryWrapper<>();
-        if (id != null)
-            menuQueryWrapper.eq("id", id);
         if (pid != null)
-            menuQueryWrapper.eq("pid", pid);
+            menuQueryWrapper.eq("id", pid);
         else
             pid = 0;
-//        List<Menu> menus = menuMapper.selectList(menuQueryWrapper);
-//        return generateTreeMenuList(menus, pid);
-        return menuMapper.selectList(menuQueryWrapper);
+        if (column != null&&column.size()>0)
+            menuQueryWrapper.select(column);
+
+        List<Menu> menus = menuMapper.selectList(menuQueryWrapper);
+        menus.sort((a, b) -> {
+            int pOrder = b.getPid() - a.getPid();
+            if (pOrder == 0) {
+                return b.getOrder() - a.getOrder();
+            }
+            return pOrder;
+        });
+        return MenuTreeList.getTreeList(menus, pid);
     }
 
     private List<Menu> generateTreeMenuList(List<Menu> list, Integer pid) {
         return list.stream().filter(item -> item != null && Objects.equals(item.getPid(), pid))
-                .peek(item -> item.setChildren(generateTreeMenuList(list, item.getId())))
-                .collect(Collectors.toList());
+                .peek(item -> item.setChildren(generateTreeMenuList(list, item.getId()))).collect(Collectors.toList());
     }
 }

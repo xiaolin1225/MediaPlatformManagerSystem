@@ -3,6 +3,7 @@ package com.xiaolin.mpms.utils;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.xiaolin.mpms.entity.common.BaseEntry;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,6 +25,7 @@ public class MPFastAutoGenerator {
                         .addTablePrefix(prefix) // 设置过滤表前缀
                         .entityBuilder()
                         .enableLombok()
+                        .superClass(BaseEntry.class)
                         .logicDeleteColumnName("is_deleted")
                         .versionColumnName("version"))
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板

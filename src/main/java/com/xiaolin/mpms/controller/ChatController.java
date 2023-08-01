@@ -4,9 +4,9 @@
 
 package com.xiaolin.mpms.controller;
 
-import com.xiaolin.mpms.entity.ChatMessage;
-import com.xiaolin.mpms.entity.ResultVO;
-import com.xiaolin.mpms.entity.User;
+import com.xiaolin.mpms.entity.chat.ChatMessage;
+import com.xiaolin.mpms.entity.VO.ResultVO;
+import com.xiaolin.mpms.entity.user.User;
 import com.xiaolin.mpms.service.ChatContactService;
 import com.xiaolin.mpms.service.ChatMessageService;
 import org.springframework.beans.factory.annotation.Autowired;

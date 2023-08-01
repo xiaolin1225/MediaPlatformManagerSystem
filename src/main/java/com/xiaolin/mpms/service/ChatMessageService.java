@@ -4,7 +4,7 @@
 
 package com.xiaolin.mpms.service;
 
-import com.xiaolin.mpms.entity.ChatMessage;
+import com.xiaolin.mpms.entity.chat.ChatMessage;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;

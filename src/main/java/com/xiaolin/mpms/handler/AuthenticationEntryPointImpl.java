@@ -5,8 +5,11 @@
 package com.xiaolin.mpms.handler;
 
 import com.alibaba.fastjson2.JSON;
-import com.xiaolin.mpms.entity.ResultVO;
-import org.springframework.http.HttpStatus;
+import com.xiaolin.mpms.entity.VO.ResultVO;
+import com.xiaolin.mpms.exception.UserError;
+import com.xiaolin.mpms.utils.text.ResUtils;
+import com.xiaolin.mpms.utils.text.StringUtils;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -20,11 +23,7 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
-        ResultVO<String> error = ResultVO.error(HttpStatus.UNAUTHORIZED.value(), "未登录，请先登录");
-        // 处理异常
-        response.setStatus(200);
-        response.setContentType("application/json;charset=utf-8");
-        response.setCharacterEncoding("utf-8");
-        response.getWriter().write(JSON.toJSONString(error));
+        String error = StringUtils.format("访问[{}]失败，登录状态已过期", request.getRequestURI());
+        ResUtils.Response(response, 4002, error);
     }
 }

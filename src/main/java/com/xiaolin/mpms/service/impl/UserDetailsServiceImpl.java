@@ -6,8 +6,8 @@ package com.xiaolin.mpms.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xiaolin.mpms.mapper.UserMapper;
-import com.xiaolin.mpms.entity.AuthUser;
-import com.xiaolin.mpms.entity.User;
+import com.xiaolin.mpms.entity.user.AuthUser;
+import com.xiaolin.mpms.entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -33,8 +33,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("用户不存在");
 //        if (!user.getIsEnable())
 //            throw new RuntimeException("用户已被禁用");
+        // 查询用户角色
+//        List<Role> roles = userMapper.getRolesByUid(user.getId());
         // 查询用户权限
-        List<String> list = userMapper.getUserRoles(user.getId());
+        List<String> list = userMapper.getUserPermissions(user.getId());
         // 返回UserDetails实现类
         return new AuthUser(user, list);
     }

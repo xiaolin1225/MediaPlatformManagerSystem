@@ -6,10 +6,12 @@ package com.xiaolin.mpms.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaolin.mpms.entity.Content;
-import com.xiaolin.mpms.entity.ContentList;
+import com.xiaolin.mpms.entity.VO.ResultVO;
+import com.xiaolin.mpms.entity.content.Content;
+import com.xiaolin.mpms.entity.content.ContentList;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -23,7 +25,11 @@ public interface ContentService extends IService<Content> {
 
     String saveContentList(ContentList contentList);
 
-    List<Content> getContent(String contentId);
+    List<Content> getContentListData(String contentId);
 
-    Page<ContentList> getContentList(int current, int size);
+    Content getContentInfo(String id);
+
+    Page<ContentList> getContentList(int current, int size, Map<String, String> filter);
+
+    boolean removeContentList(Integer id);
 }

@@ -4,11 +4,13 @@
 
 package com.xiaolin.mpms.filter;
 
-import com.xiaolin.mpms.entity.AuthUser;
+import com.xiaolin.mpms.entity.user.AuthUser;
+import com.xiaolin.mpms.exception.UserError;
 import com.xiaolin.mpms.utils.JWTUtils;
 import com.xiaolin.mpms.utils.RedisCache;
+import com.xiaolin.mpms.utils.text.ResUtils;
+import com.xiaolin.mpms.utils.text.StringUtils;
 import lombok.extern.log4j.Log4j2;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,7 +40,6 @@ public class JWTAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        log.info("url:{},uri:{},header:{}", request.getRequestURI(), request.getRequestURI(),request.getHeader("Sec-WebSocket-Protocol"));
         // 获取token
         String token = request.getHeader(tokenHeader);
         if (StringUtils.isEmpty(token)) {
@@ -49,22 +50,24 @@ public class JWTAuthenticationTokenFilter extends OncePerRequestFilter {
                 return;
             } else {
                 token = websocketToken;
-                response.setHeader("Sec-WebSocket-Protocol",websocketToken);
+                response.setHeader("Sec-WebSocket-Protocol", websocketToken);
             }
         }
 
         // 解析token
         String uid;
+
         try {
             uid = jwtUtils.getUidFromToken(token);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new UserError("登录已过期");
         }
         // 从Redis中获取用户信息
         AuthUser authUser = redisCache.getCacheObject("login:" + uid);
-        System.out.println(authUser);
         if (Objects.isNull(authUser)) {
-            throw new RuntimeException("用户未登录");
+            if (!token.isEmpty()) {
+                throw new UserError("登录已过期");
+            }
         }
         // 存入SecurityContextHolder
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(authUser, null, authUser.getAuthorities());

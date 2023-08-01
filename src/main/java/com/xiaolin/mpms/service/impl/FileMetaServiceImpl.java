@@ -5,9 +5,9 @@
 package com.xiaolin.mpms.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xiaolin.mpms.mapper.FileMetaMapper;
+import com.xiaolin.mpms.mapper.MediaMetaMapper;
 import com.xiaolin.mpms.service.FileMetaService;
-import com.xiaolin.mpms.entity.FileMeta;
+import com.xiaolin.mpms.entity.media.MediaMeta;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,6 +19,6 @@ import org.springframework.stereotype.Service;
  * @since 2023-02-28
  */
 @Service
-public class FileMetaServiceImpl extends ServiceImpl<FileMetaMapper, FileMeta> implements FileMetaService {
+public class FileMetaServiceImpl extends ServiceImpl<MediaMetaMapper, MediaMeta> implements FileMetaService {
 
 }

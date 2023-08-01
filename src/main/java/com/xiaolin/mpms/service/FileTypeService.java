@@ -5,7 +5,7 @@
 package com.xiaolin.mpms.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaolin.mpms.entity.FileType;
+import com.xiaolin.mpms.entity.media.MediaType;
 
 /**
  * <p>
@@ -15,7 +15,7 @@ import com.xiaolin.mpms.entity.FileType;
  * @author xiaolin
  * @since 2023-03-01
  */
-public interface FileTypeService extends IService<FileType> {
+public interface FileTypeService extends IService<MediaType> {
 
     /**
      * 根据文件类型名获取文件类型
@@ -23,5 +23,5 @@ public interface FileTypeService extends IService<FileType> {
      * @param name 文件类型名
      * @return 文件类型
      */
-    FileType getFileTypeByName(String name);
+    MediaType getFileTypeByName(String name);
 }

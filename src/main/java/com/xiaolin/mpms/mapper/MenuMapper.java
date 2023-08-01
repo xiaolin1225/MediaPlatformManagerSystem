@@ -5,7 +5,7 @@
 package com.xiaolin.mpms.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xiaolin.mpms.entity.Menu;
+import com.xiaolin.mpms.entity.system.Menu;
 
 /**
  * <p>

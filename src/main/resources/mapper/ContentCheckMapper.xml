@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaolin.mpms.mapper.ContentCheckMapper">
+    <resultMap id="baseMap" type="contentCheck">
+        <id column="id" property="id"/>
+        <association property="checkUsers" column="id" javaType="java.util.List"
+                     select="com.xiaolin.mpms.mapper.ContentCheckUserMapper.getCheckUserListByCid"/>
+    </resultMap>
+
+    <select id="getListPage" resultMap="baseMap">
+        SELECT
+        *
+        FROM xl_content_check
+        WHERE is_deleted = 0
+        <if test="ew != null and ew.getSqlSegment != ''">
+            AND ${ew.getSqlSegment}
+        </if>
+    </select>
+    <select id="getCheck" resultMap="baseMap">
+        SELECT
+        *
+        FROM xl_content_check
+        WHERE is_deleted = 0
+        <if test="ew != null and ew.getSqlSegment != ''">
+            AND ${ew.getSqlSegment}
+        </if>
+    </select>
+</mapper>

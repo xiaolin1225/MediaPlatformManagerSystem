@@ -5,8 +5,8 @@
 package com.xiaolin.mpms.controller;
 
 import com.xiaolin.mpms.service.MenuService;
-import com.xiaolin.mpms.entity.Menu;
-import com.xiaolin.mpms.entity.ResultVO;
+import com.xiaolin.mpms.entity.system.Menu;
+import com.xiaolin.mpms.entity.VO.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -24,12 +24,23 @@ public class MenuController {
     @Autowired
     private MenuService menuService;
 
-    @RequestMapping(value = {"{id}", ""}, method = RequestMethod.GET)
+    @GetMapping("")
     @ApiOperation(value = "获取菜单数据")
     @ApiResponses({
             @ApiResponse(code = 200, message = "数据获取成功")
     })
-    public ResultVO<List<Menu>> backHome(@PathVariable(required = false) Integer id, @RequestParam(required = false) Integer pid) {
-        return ResultVO.success("数据获取成功", menuService.getTreeList(id, pid));
+    public ResultVO<List<Menu>> getMenuList(@RequestParam(required = false) Integer pid) {
+        List<Menu> treeList = menuService.getRouterList(pid);
+        return ResultVO.success("数据获取成功", treeList);
+    }
+
+    @GetMapping("/role")
+    @ApiOperation(value = "获取角色编辑菜单数据")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "数据获取成功")
+    })
+    public ResultVO<List<Menu>> getRoleEditList() {
+        List<Menu> treeList = menuService.getRoleEditList();
+        return ResultVO.success("数据获取成功", treeList);
     }
 }

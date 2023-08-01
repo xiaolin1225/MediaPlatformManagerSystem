@@ -4,7 +4,7 @@
 
 package com.xiaolin.mpms.service;
 
-import com.xiaolin.mpms.entity.Captcha;
+import com.xiaolin.mpms.entity.system.Captcha;
 
 public interface CaptchaService {
     Captcha generateCaptcha(String codeKey, String type);

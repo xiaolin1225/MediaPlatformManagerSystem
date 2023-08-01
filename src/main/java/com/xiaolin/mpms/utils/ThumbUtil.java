@@ -20,7 +20,7 @@ public class ThumbUtil {
     //开机静态加载水印图片
     static {
         try {
-            markIco = new File(new File("").getCanonicalPath() + "/upload/系统文件/watermark.png");
+            markIco = new File(new File("").getCanonicalPath() + "/upload/system/watermark.png");
             System.out.println("水印图片加载" + (markIco.exists() ? "成功" : "失败"));
         } catch (Exception e) {
             System.out.println("水印图片加载失败");

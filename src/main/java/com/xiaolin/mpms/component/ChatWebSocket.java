@@ -2,19 +2,16 @@ package com.xiaolin.mpms.component;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import com.xiaolin.mpms.entity.ChatContact;
-import com.xiaolin.mpms.entity.ChatMessage;
-import com.xiaolin.mpms.entity.ResultVO;
-import com.xiaolin.mpms.entity.User;
+import com.xiaolin.mpms.entity.chat.ChatMessage;
+import com.xiaolin.mpms.entity.VO.ResultVO;
+import com.xiaolin.mpms.entity.user.User;
 import com.xiaolin.mpms.service.ChatContactService;
 import com.xiaolin.mpms.service.ChatMessageService;
 import com.xiaolin.mpms.service.UserService;
 import com.xiaolin.mpms.utils.RedisCache;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
@@ -49,7 +46,7 @@ public class ChatWebSocket {
 
     List<User> contact = new ArrayList<>();
 
-    List<Session> contactSession = new ArrayList<>();
+    final List<Session> contactSession = new ArrayList<>();
 
     /**
      * 连接建立成功调用的方法
