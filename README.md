@@ -1,16 +1,17 @@
 <p align="center">
 	<img alt="logo" src="https://raw.githubusercontent.com/xiaolin1225/mpms_vue/master/src/assets/logo.png">
 </p>
-<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">高校融媒体管理系统</h1>
-<h4 align="center">基于SpringBoot开发的高校融媒体管理平台</h4>
+<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">高校微信公众平台管理系统</h1>
+<h4 align="center">基于SpringBoot开发的高校微信公众平台管理系统</h4>
 <p align="center">
 </p>
 
 ## 简介
 
-本项目建立聚合发布平台,实现一个平台管理多平台自媒体账号。实现一个平台对下属的微博、微信等多平台自媒体账号的统一管理可通过权限管理系统，对下属账号进行权限控制，明确划分任务，实现分级审核等功能。帮助高校宣传部门更好的完成对所属融媒体账号进行管理。
+本项目建立聚合发布平台,实现一个平台管理多个微信公众账号。实现一个平台对下属的微信公众账号的统一管理可通过权限管理系统，对下属账号进行权限控制，明确划分任务，实现分级审核等功能。帮助高校宣传部门更好的完成对所属微信公众账号进行管理。
 
 * 本项目为前后端分离项目，前端界面请移步[mpms-Vue](https://github.com/xiaolin1225/mpms_vue)
+* 项目预览：账号【xiaolin】密码【123456】[高校微信公众平台管理系统](http://mpms.lmy6666.com/)
 
 ## 内置功能
 
