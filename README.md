@@ -25,3 +25,6 @@
 8.  平台管理：配置融媒体平台。
 9.  内容审核：对融媒体内容进行分级审核。
 10. 一键发布：批量发布融媒体内容至融媒体平台。
+
+##
+![Alt](https://repobeats.axiom.co/api/embed/3d0d1601b2646772070906df1ae191adca084d92.svg "Repobeats analytics image")
